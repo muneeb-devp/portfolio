@@ -152,7 +152,7 @@ export default function Hero() {
                 role="presentation"
                 className="flex cursor-pointer flex-col items-center justify-center"
                 onClick={() => {
-                  const intro = document.querySelector('#intro')
+                  const intro = document.querySelector('#projects')
 
                   intro?.scrollIntoView({ behavior: 'smooth' })
                 }}
