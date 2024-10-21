@@ -1,6 +1,8 @@
 import './globals.css'
 import { Nunito } from 'next/font/google'
 import ThemeProvider from '@/components/Providers/ThemeProvider'
+import Header from '@/components/Header'
+import LenisProvider from '@/components/Providers/LenisProvider'
 
 export const metadata = {
   title: 'Muneeb Mughal | Portfolio',
@@ -19,7 +21,10 @@ export default function RootLayout({ children }) {
           enableSystem={false}
           themes={['dark', 'light']}
         >
-          {children}
+          <Header />
+          <LenisProvider>
+            <main>{children}</main>
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -68,7 +68,6 @@
   }
 }
 
-body {
-  overflow-x: hidden;
-  overflow-y: hidden;
+html::-webkit-scrollbar {
+  display: none;
 }

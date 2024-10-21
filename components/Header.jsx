@@ -56,10 +56,6 @@ export default function Header() {
             <div className="flex items-center">
               <ThemeSwitch />
             </div>
-            {/* <div className="flex items-center">
-              <CommandPalette />
-              <MobileNav />
-            </div> */}
           </div>
         </div>
       </header>

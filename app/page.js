@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import { ScrollProvider } from '@/components/Providers/ScrollProvider'
 import SectionContainer from '@/components/SectionContainer'
 import { HeroParallax } from '@/components/ui/hero-parallax'
 import Image from 'next/image'
@@ -103,13 +104,12 @@ export const products = [
 export default function Home() {
   return (
     <>
-      <header>
+      <ScrollProvider>
         <SectionContainer>
-          <Header />
           <Hero />
         </SectionContainer>
         <HeroParallax products={products} />
-      </header>
+      </ScrollProvider>
     </>
   )
 }

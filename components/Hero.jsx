@@ -136,7 +136,7 @@ export default function Hero() {
               </h2>
               <Link
                 href="/about"
-                className="underline-magical text-md w-max cursor-pointer sm:text-lg md:text-xl xl:text-2xl"
+                className="underline-magical text-md w-max cursor-pointer sm:text-lg md:text-2xl xl:text-3xl mt-4 pt-5"
               >
                 Get in touch &rarr;
               </Link>
@@ -144,6 +144,7 @@ export default function Hero() {
             <motion.div
               animate={{
                 transform: `translateY(${progress * 10}vh)`,
+                opacity: 1 - progress,
               }}
               className="absolute bottom-4 left-1/2 -translate-x-1/2 transform md:bottom-8"
             >
