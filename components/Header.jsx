@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation'
 import ThemeSwitch from './ThemeSwitch'
 
 const headerNavLinks = [
-  { href: '/projects', title: 'Projects' },
-  { href: '/about', title: 'About' },
-  { href: '/contact', title: 'Contact' },
+  { href: '#projects', title: 'Projects' },
+  { href: '#about', title: 'About' },
+  { href: '#contact', title: 'Contact' },
 ]
 
 export default function Header() {
@@ -45,6 +45,12 @@ export default function Header() {
                       'horizontal-underline-active': active,
                     })}
                     aria-label={title}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      document
+                        .getElementById(`${href.substring(1)}`)
+                        .scrollIntoView({ behavior: 'smooth' })
+                    }}
                   >
                     <span className="font-semibold tracking-wide ">
                       {title}
