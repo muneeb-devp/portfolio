@@ -18,29 +18,26 @@ export const products = [
       'https://aceternity.com/images/products/thumbnails/new/moonbeam.png',
   },
   {
+    title: 'Paylocity',
+    link: 'https://paylocity.com',
+    thumbnail: '/paylocity.png',
+  },
+  {
+    title: 'JET',
+    link: 'https://jonas.events',
+    thumbnail: '/JET - Home.png',
+  },
+
+  {
+    title: 'MRO',
+    link: 'https://mrocorp.org',
+    thumbnail: '/mro.png',
+  },
+  {
     title: 'Cursor',
     link: 'https://cursor.so',
     thumbnail:
       'https://aceternity.com/images/products/thumbnails/new/cursor.png',
-  },
-  {
-    title: 'Rogue',
-    link: 'https://userogue.com',
-    thumbnail:
-      'https://aceternity.com/images/products/thumbnails/new/rogue.png',
-  },
-
-  {
-    title: 'Editorially',
-    link: 'https://editorially.org',
-    thumbnail:
-      'https://aceternity.com/images/products/thumbnails/new/editorially.png',
-  },
-  {
-    title: 'Editrix AI',
-    link: 'https://editrix.ai',
-    thumbnail:
-      'https://aceternity.com/images/products/thumbnails/new/editrix.png',
   },
   {
     title: 'Pixel Perfect',
@@ -56,16 +53,14 @@ export const products = [
       'https://aceternity.com/images/products/thumbnails/new/algochurn.png',
   },
   {
-    title: 'Aceternity UI',
-    link: 'https://ui.aceternity.com',
-    thumbnail:
-      'https://aceternity.com/images/products/thumbnails/new/aceternityui.png',
+    title: 'StartupSlang',
+    link: 'https://startupslang.com',
+    thumbnail: '/SS - Startup Slang.png',
   },
   {
-    title: 'Tailwind Master Kit',
-    link: 'https://tailwindmasterkit.com',
-    thumbnail:
-      'https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png',
+    title: 'TPS',
+    link: 'https://turningpoint-healthcare.com',
+    thumbnail: '/tps.png',
   },
   {
     title: 'SmartBridge',
@@ -210,7 +205,7 @@ export default function Home() {
             transition={{ duration: 0.5, ease: [0.4, 0.0, 0.2, 1] }}
             className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto"
           >
-            With 8+ years of full stack experience, I offer expertise in <br />
+            With 6+ years of full stack experience, I offer expertise in <br />
             <Highlight className="text-black dark:text-white">
               Web, Mobile, and Desktop <br />
             </Highlight>

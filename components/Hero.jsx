@@ -21,10 +21,9 @@ export const products = [
       'https://aceternity.com/images/products/thumbnails/new/cursor.png',
   },
   {
-    title: 'Rogue',
-    link: 'https://userogue.com',
-    thumbnail:
-      'https://aceternity.com/images/products/thumbnails/new/rogue.png',
+    title: 'JET',
+    link: 'https://jonas.events',
+    thumbnail: '/JET - Home.png',
   },
 
   {
@@ -135,8 +134,14 @@ export default function Hero() {
                 I build things for the web.
               </h2>
               <Link
-                href="/about"
+                href="#contact"
                 className="underline-magical text-md w-max cursor-pointer sm:text-lg md:text-2xl xl:text-3xl mt-4 pt-5"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document
+                    .querySelector('#contact')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
                 Get in touch &rarr;
               </Link>

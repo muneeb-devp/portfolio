@@ -6,7 +6,8 @@ import LenisProvider from '@/components/Providers/LenisProvider'
 
 export const metadata = {
   title: 'Muneeb Mughal | Portfolio',
-  description: 'Portfolio site create in Next.js',
+  description:
+    'Explore the innovative projects and professional journey of Muneeb Mughal, a passionate developer specializing in creating dynamic and responsive web applications',
 }
 
 const nunito = Nunito({ weight: ['400', '700'], preload: false })

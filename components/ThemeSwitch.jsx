@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { BsMoonFill, BsSunFill } from 'react-icons/bs'
 
 const ThemeSwitch = () => {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(true)
   const { theme, setTheme, resolvedTheme } = useTheme()
 
   useEffect(() => setMounted(true), [])
