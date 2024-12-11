@@ -9,6 +9,7 @@ import { HeroParallax } from '@/components/ui/hero-parallax'
 import Image from 'next/image'
 import { Timeline } from '@/components/ui/timeline'
 import Contact from '@/components/Contact'
+import Clarity from '@microsoft/clarity'
 
 export const products = [
   {
@@ -188,6 +189,8 @@ const data = [
     ),
   },
 ]
+
+Clarity.init('pci5hy04k5')
 
 export default function Home() {
   return (
