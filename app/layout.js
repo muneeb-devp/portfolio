@@ -1,5 +1,5 @@
 import './globals.css'
-import { Nunito } from 'next/font/google'
+import { Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google'
 import ThemeProvider from '@/components/Providers/ThemeProvider'
 import Header from '@/components/Header'
 import LenisProvider from '@/components/Providers/LenisProvider'
@@ -10,12 +10,24 @@ export const metadata = {
     'Explore the innovative projects and professional journey of Muneeb Mughal, a passionate developer specializing in creating dynamic and responsive web applications',
 }
 
-const nunito = Nunito({ weight: ['400', '700'], preload: false })
+const bricolage = Bricolage_Grotesque({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${nunito.className}`}>
+    <html lang="en" className={`${bricolage.variable} ${jetbrainsMono.variable}`}>
+      <body className={bricolage.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

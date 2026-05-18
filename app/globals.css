@@ -4,58 +4,78 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    /* Design tokens */
+    --gold: #C8A97A;
+    --ink: #080808;
+    --paper: #F0EDE6;
+    /* Used as rgba(var(--fg-rgb), opacity) so colors flip with theme */
+    --fg-rgb: 240, 237, 230;
+
+    /* shadcn/ui — dark as default */
+    --background: 0 0% 3.1%;
+    --foreground: 38 18% 91%;
+    --card: 0 0% 5%;
+    --card-foreground: 38 18% 91%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 38 18% 91%;
+    --primary: 38 18% 91%;
+    --primary-foreground: 0 0% 3.1%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 38 18% 91%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 36 42% 63%;
+    --accent-foreground: 0 0% 3.1%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 38 18% 91%;
+    --border: 0 0% 11%;
+    --input: 0 0% 11%;
+    --ring: 36 42% 63%;
+    --radius: 0.2rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --fg-rgb: 240, 237, 230;
+    --background: 0 0% 3.1%;
+    --foreground: 38 18% 91%;
+    --card: 0 0% 5%;
+    --card-foreground: 38 18% 91%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 38 18% 91%;
+    --primary: 38 18% 91%;
+    --primary-foreground: 0 0% 3.1%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 38 18% 91%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 36 42% 63%;
+    --accent-foreground: 0 0% 3.1%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --destructive-foreground: 38 18% 91%;
+    --border: 0 0% 11%;
+    --input: 0 0% 11%;
+    --ring: 36 42% 63%;
+  }
+
+  .light {
+    --fg-rgb: 8, 8, 8;
+    --background: 38 15% 96%;
+    --foreground: 0 0% 5%;
+    --card: 38 10% 93%;
+    --card-foreground: 0 0% 5%;
+    --popover: 38 10% 93%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 38 15% 96%;
+    --secondary: 38 10% 88%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 38 10% 88%;
+    --muted-foreground: 0 0% 35%;
+    --accent: 36 42% 50%;
+    --accent-foreground: 38 15% 96%;
+    --border: 38 10% 82%;
+    --input: 38 10% 82%;
+    --ring: 36 42% 50%;
   }
 }
 
@@ -63,11 +83,208 @@
   * {
     @apply border-border;
   }
+
+  /* ─── Hide scrollbar everywhere ─────────────────────── */
+  *,
+  *::-webkit-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  html {
+    cursor: crosshair;
+  }
+
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    /* Radial gradient — warm gold bloom at top, pure dark below */
+    background-image: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(200, 169, 122, 0.07) 0%, transparent 70%);
+  }
+
+  ::selection {
+    background: rgba(200, 169, 122, 0.28);
+    color: #F0EDE6;
   }
 }
 
-html::-webkit-scrollbar {
-  display: none;
+/* ─── Grain texture overlay ────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+/* ─── Font utilities ───────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display, Georgia, serif);
+}
+
+.font-mono-custom {
+  font-family: var(--font-mono, 'Courier New', monospace);
+}
+
+/* ─── Micro label ──────────────────────────────────────── */
+.label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240, 237, 230, 0.38);
+}
+
+.light .label {
+  color: rgba(8, 8, 8, 0.38);
+}
+
+/* ─── Outlined / stroked text ──────────────────────────── */
+.text-stroke {
+  -webkit-text-stroke: 1.5px #F0EDE6;
+  color: transparent;
+}
+
+.light .text-stroke {
+  -webkit-text-stroke: 1.5px #080808;
+}
+
+/* ─── Gold accent ──────────────────────────────────────── */
+.text-gold {
+  color: #C8A97A;
+}
+
+.bg-gold {
+  background-color: #C8A97A;
+}
+
+/* ─── Thin rule ────────────────────────────────────────── */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: rgba(var(--fg-rgb), 0.08);
+}
+
+/* ─── Fill-on-hover button ─────────────────────────────── */
+.btn-ink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid rgba(240, 237, 230, 0.22);
+  color: rgba(240, 237, 230, 0.7);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.btn-ink > span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-ink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #C8A97A;
+  transform: translateY(102%);
+  transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.btn-ink:hover {
+  color: #080808;
+  border-color: #C8A97A;
+}
+
+.btn-ink:hover::before {
+  transform: translateY(0);
+}
+
+/* ─── Nav link ─────────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240, 237, 230, 0.45);
+  transition: color 0.25s;
+}
+
+.light .nav-link {
+  color: rgba(8, 8, 8, 0.45);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C8A97A;
+  transition: width 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #F0EDE6;
+  outline: none;
+}
+
+.light .nav-link:hover {
+  color: #080808;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ─── Stat card ────────────────────────────────────────── */
+.stat-card {
+  border: 1px solid rgba(var(--fg-rgb), 0.07);
+  padding: 2rem 2.25rem;
+  background: rgba(var(--fg-rgb), 0.015);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.stat-card:hover {
+  border-color: rgba(200, 169, 122, 0.3);
+  background: rgba(200, 169, 122, 0.04);
+}
+
+/* ─── Contact link row ─────────────────────────────────── */
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: rgba(var(--fg-rgb), 0.012);
+  border-bottom: 1px solid rgba(var(--fg-rgb), 0.07);
+  transition: background 0.3s, padding-left 0.3s;
+  cursor: pointer;
+}
+
+.contact-link:hover {
+  background: rgba(200, 169, 122, 0.07);
+  padding-left: 2.5rem;
 }

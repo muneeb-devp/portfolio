@@ -9,8 +9,7 @@ export const Timeline = ({ data }) => {
 
   useEffect(() => {
     if (ref.current) {
-      const rect = ref.current.getBoundingClientRect()
-      setHeight(rect.height)
+      setHeight(ref.current.getBoundingClientRect().height)
     }
   }, [ref])
 
@@ -23,53 +22,109 @@ export const Timeline = ({ data }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1])
 
   return (
-    <div
-      className="w-full bg-transparent dark:bg-neutral-950 font-sans md:px-10"
-      ref={containerRef}
-    >
-      <div className="max-w-7xl mx-auto py-10 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-          Changelog from my journey
-        </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          A timeline of my voyage into the world of software.
-        </p>
-      </div>
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-10">
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-start pt-10 md:pt-20 md:gap-10"
+    <div className="w-full px-6 md:px-12 xl:px-20 py-20" ref={containerRef}>
+
+      {/* Section header */}
+      <div className="mb-16">
+        <div className="rule mb-8" />
+        <motion.span
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="label"
+        >
+          02 — Experience
+        </motion.span>
+        <div style={{ overflow: 'hidden' }} className="mt-4">
+          <motion.h2
+            initial={{ y: '100%' }}
+            whileInView={{ y: '0%' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.95, ease: [0.76, 0, 0.24, 1] }}
+            className="font-display text-[clamp(2rem,4.5vw,5rem)] font-light leading-tight"
+            style={{ fontFamily: 'var(--font-display)' }}
           >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
+            Changelog from my journey
+          </motion.h2>
+        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="label mt-3"
+          style={{ color: 'rgba(var(--fg-rgb), 0.35)' }}
+        >
+          A timeline of my voyage into the world of software.
+        </motion.p>
+      </div>
+
+      {/* Timeline entries */}
+      <div ref={ref} className="relative">
+        {data.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-5%' }}
+            transition={{ duration: 0.7, delay: index * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex justify-start pt-14 md:pt-24 md:gap-16"
+          >
+            {/* Date column — sticky */}
+            <div className="sticky flex flex-col md:flex-row z-40 items-start top-28 self-start max-w-[200px] md:max-w-sm md:w-full">
+              <div className="md:pl-10">
+                <div
+                  className="w-2 h-2 rounded-full mb-4 ml-[3px]"
+                  style={{ background: '#C8A97A' }}
+                />
+                <h3
+                  className="hidden md:block font-display font-light text-foreground"
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(1.5rem,3vw,3rem)',
+                    opacity: 0.5,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {item.title}
+                </h3>
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-500 dark:text-neutral-500 ">
-                {item.title}
-              </h3>
             </div>
 
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
+            {/* Content column */}
+            <div className="relative pl-10 pr-4 md:pl-0 w-full max-w-2xl">
+              {/* Mobile date */}
+              <h3
+                className="md:hidden block font-display font-light mb-4 text-foreground"
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.5rem',
+                  opacity: 0.45,
+                }}
+              >
                 {item.title}
               </h3>
-              {item.content}{' '}
+              {item.content}
             </div>
-          </div>
+          </motion.div>
         ))}
+
+        {/* Animated vertical line */}
         <div
+          className="absolute left-[3px] md:left-[39px] top-0 w-px overflow-hidden"
           style={{
             height: height + 'px',
+            background: 'rgba(var(--fg-rgb), 0.06)',
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
         >
           <motion.div
+            className="absolute inset-x-0 top-0 w-full"
             style={{
               height: heightTransform,
               opacity: opacityTransform,
+              background: 'linear-gradient(to bottom, #C8A97A 0%, rgba(200,169,122,0.3) 60%, transparent 100%)',
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>

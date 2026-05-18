@@ -1,116 +1,32 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { useContext, useEffect, useRef } from 'react'
-import { HiOutlineArrowNarrowDown } from 'react-icons/hi'
 import { ScrollContext } from './Providers/ScrollProvider'
 import { renderCanvas } from '@/lib/renderCanvas'
 
-export const products = [
-    {
-        title: 'Moonbeam',
-        link: 'https://gomoonbeam.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/moonbeam.png',
-    },
-    {
-        title: 'Cursor',
-        link: 'https://cursor.so',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/cursor.png',
-    },
-    {
-        title: 'JET',
-        link: 'https://jonas.events',
-        thumbnail: '/JET - Home.png',
-    },
-
-    {
-        title: 'Editorially',
-        link: 'https://editorially.org',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/editorially.png',
-    },
-    {
-        title: 'Editrix AI',
-        link: 'https://editrix.ai',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/editrix.png',
-    },
-    {
-        title: 'Pixel Perfect',
-        link: 'https://app.pixelperfect.quest',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/pixelperfect.png',
-    },
-
-    {
-        title: 'Algochurn',
-        link: 'https://algochurn.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/algochurn.png',
-    },
-    {
-        title: 'Aceternity UI',
-        link: 'https://ui.aceternity.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/aceternityui.png',
-    },
-    {
-        title: 'Tailwind Master Kit',
-        link: 'https://tailwindmasterkit.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png',
-    },
-    {
-        title: 'SmartBridge',
-        link: 'https://smartbridgetech.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/smartbridge.png',
-    },
-    {
-        title: 'Renderwork Studio',
-        link: 'https://renderwork.studio',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/renderwork.png',
-    },
-
-    {
-        title: 'Creme Digital',
-        link: 'https://cremedigital.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/cremedigital.png',
-    },
-    {
-        title: 'Golden Bells Academy',
-        link: 'https://goldenbellsacademy.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png',
-    },
-    {
-        title: 'Invoker Labs',
-        link: 'https://invoker.lol',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/invoker.png',
-    },
-    {
-        title: 'E Free Invoice',
-        link: 'https://efreeinvoice.com',
-        thumbnail:
-            'https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png',
-    },
-]
+function LineReveal({ children, delay = 0, className = '' }) {
+    return (
+        <div style={{ overflow: 'hidden', display: 'block' }}>
+            <motion.div
+                initial={{ y: '108%' }}
+                animate={{ y: '0%' }}
+                transition={{ duration: 1, delay, ease: [0.76, 0, 0.24, 1] }}
+                className={className}
+            >
+                {children}
+            </motion.div>
+        </div>
+    )
+}
 
 export default function Hero() {
     const ref = useRef(null)
     const { scrollY } = useContext(ScrollContext)
 
     let progress = 0
-    const { current: elContainer } = ref
-
-    if (elContainer) {
-        progress = Math.min(1, scrollY / elContainer.clientHeight)
+    if (ref.current) {
+        progress = Math.min(1, scrollY / ref.current.clientHeight)
     }
 
     useEffect(() => {
@@ -118,66 +34,164 @@ export default function Hero() {
     }, [])
 
     return (
-        <div>
-            <h1 className="sr-only">
-                Hello I&apos;m Muneeb Mughal, I&apos;m a Software Engineer
-                building for the web.
+        <div className='relative'>
+            <h1 className='sr-only'>
+                Muneeb Mughal — Principal Engineer, building for the web.
             </h1>
-            <div className="relative z-10 flex h-[calc(100vh-81px)] items-center md:h-[calc(100vh-116px)]">
-                <div className="mx-auto w-screen max-w-3xl px-4 sm:px-9 xl:max-w-5xl xl:px-0">
-                    <div className="-mt-36">
-                        <div
-                            ref={ref}
-                            className="flex cursor-default flex-col space-y-2"
-                        >
-                            <h1 className="text-5xl font-semibold sm:text-6xl md:text-7xl xl:text-8xl">
-                                Muneeb Mughal
-                            </h1>
-                            <h2 className="text-3xl font-medium opacity-80 sm:text-3xl md:text-4xl xl:text-5xl">
-                                I build things for the web.
-                            </h2>
-                            <Link
-                                href="#contact"
-                                className="underline-magical text-md w-max cursor-pointer sm:text-lg md:text-2xl xl:text-3xl mt-4 pt-5"
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    document
-                                        .querySelector('#contact')
-                                        ?.scrollIntoView({ behavior: 'smooth' })
-                                }}
-                            >
-                                Get in touch &rarr;
-                            </Link>
-                        </div>
-                        <motion.div
-                            animate={{
-                                transform: `translateY(${progress * 10}vh)`,
-                                opacity: 1 - progress,
-                            }}
-                            className="absolute bottom-4 left-1/2 -translate-x-1/2 transform md:bottom-8"
-                        >
-                            <div
-                                role="presentation"
-                                className="flex cursor-pointer flex-col items-center justify-center"
-                                onClick={() => {
-                                    const intro =
-                                        document.querySelector('#projects')
 
-                                    intro?.scrollIntoView({
-                                        behavior: 'smooth',
-                                    })
+            {/* Hero layout */}
+            <div className='relative z-10 flex min-h-screen flex-col justify-center pt-28 pb-20 px-6 md:px-12 xl:px-20'>
+                <div ref={ref}>
+                    {/* Label row */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -18 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                            duration: 0.7,
+                            delay: 0.1,
+                            ease: [0.25, 0.1, 0.25, 1],
+                        }}
+                        className='mb-10 flex items-center gap-4'
+                    >
+                        <span className='label text-gold'>Portfolio</span>
+                        <span className='label' style={{ opacity: 0.3 }}>
+                            /
+                        </span>
+                        <span className='label'>
+                            {new Date().getFullYear()}
+                        </span>
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{
+                                duration: 0.9,
+                                delay: 0.4,
+                                ease: [0.25, 0.1, 0.25, 1],
+                            }}
+                            style={{ originX: 0 }}
+                            className='h-px w-12 bg-gold opacity-40'
+                        />
+                    </motion.div>
+
+                    {/* Name — massive editorial display */}
+                    <div
+                        className='font-display leading-none mb-10'
+                        style={{ fontFamily: 'var(--font-display)' }}
+                    >
+                        <LineReveal
+                            delay={0.2}
+                            className='block text-[clamp(4rem,16vw,18rem)] font-light tracking-[-0.02em] leading-none select-none'
+                        >
+                            MUNEEB
+                        </LineReveal>
+                        <LineReveal
+                            delay={0.38}
+                            className='block text-[clamp(4rem,16vw,18rem)] font-light tracking-[-0.02em] leading-none select-none text-stroke'
+                        >
+                            MUGHAL
+                        </LineReveal>
+                    </div>
+
+                    {/* Divider */}
+                    <motion.div
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{
+                            duration: 1.2,
+                            delay: 0.9,
+                            ease: [0.25, 0.1, 0.25, 1],
+                        }}
+                        style={{ originX: 0 }}
+                        className='rule mb-8'
+                    />
+
+                    {/* Bottom row — metadata + CTA */}
+                    <div className='flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6'>
+                        <motion.div
+                            initial={{ opacity: 0, y: 14 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 1.15 }}
+                            className='flex flex-col gap-1'
+                        >
+                            <p
+                                className='font-mono-custom text-sm tracking-[0.18em] uppercase'
+                                style={{
+                                    color: 'rgba(var(--fg-rgb), 0.55)',
+                                    fontFamily: 'var(--font-mono)',
                                 }}
                             >
-                                <HiOutlineArrowNarrowDown size={20} />
-                            </div>
+                                Principal Engineer
+                            </p>
+                            <p
+                                className='font-mono-custom text-xs tracking-[0.18em] uppercase'
+                                style={{
+                                    color: 'rgba(var(--fg-rgb), 0.28)',
+                                    fontFamily: 'var(--font-mono)',
+                                }}
+                            >
+                                Web&nbsp;·&nbsp;Mobile&nbsp;·&nbsp;Desktop&nbsp;·&nbsp;6+
+                                Years
+                            </p>
                         </motion.div>
+
+                        <motion.a
+                            href='#contact'
+                            initial={{ opacity: 0, y: 14 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 1.3 }}
+                            className='btn-ink self-start sm:self-auto'
+                            onClick={e => {
+                                e.preventDefault()
+                                document
+                                    .querySelector('#contact')
+                                    ?.scrollIntoView({ behavior: 'smooth' })
+                            }}
+                        >
+                            <span>Get in touch</span>
+                            <span>↗</span>
+                        </motion.a>
                     </div>
                 </div>
             </div>
+
+            {/* Scroll indicator */}
+            <motion.div
+                style={{
+                    opacity: Math.max(0, 1 - progress * 4),
+                    cursor: 'pointer',
+                }}
+                className='absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3'
+                onClick={() =>
+                    document
+                        .querySelector('#projects')
+                        ?.scrollIntoView({ behavior: 'smooth' })
+                }
+            >
+                <span
+                    className='label'
+                    style={{ fontSize: '0.55rem', letterSpacing: '0.3em' }}
+                >
+                    Scroll
+                </span>
+                <motion.div
+                    animate={{
+                        scaleY: [1, 1.4, 1],
+                        opacity: [0.15, 0.35, 0.15],
+                    }}
+                    transition={{
+                        repeat: Infinity,
+                        duration: 2,
+                        ease: 'easeInOut',
+                    }}
+                    className='w-px h-12 bg-foreground origin-top'
+                />
+            </motion.div>
+
+            {/* Colorful cursor trail canvas */}
             <canvas
-                className="bg-skin-base pointer-events-none absolute inset-0"
-                id="canvas"
-            ></canvas>
+                className='pointer-events-none absolute inset-0 z-0'
+                id='canvas'
+            />
         </div>
     )
 }

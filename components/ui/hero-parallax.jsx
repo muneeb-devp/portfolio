@@ -90,18 +90,49 @@ export const HeroParallax = ({ products }) => {
 export const Header = () => {
     return (
         <div
-            className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0"
+            className="relative mx-auto py-24 md:py-40 px-6 md:px-12 xl:px-20 w-full left-0 top-0 scroll-mt-20"
             id="projects"
         >
-            <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-                Crafting digital experiences, <br /> one project at a time.
-            </h1>
-            <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
+            {/* Section label */}
+            <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="label mb-8 block"
+            >
+                01 — Projects
+            </motion.span>
+
+            {/* Heading */}
+            <div style={{ overflow: 'hidden' }}>
+                <motion.h2
+                    initial={{ y: '100%' }}
+                    whileInView={{ y: '0%' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+                    className="font-display text-[clamp(2rem,6vw,7.5rem)] font-light leading-tight text-foreground"
+                    style={{ fontFamily: 'var(--font-display)' }}
+                >
+                    Crafting digital experiences,<br />
+                    one project at a time.
+                </motion.h2>
+            </div>
+
+            <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mt-6 max-w-xl font-display text-lg md:text-xl font-light leading-relaxed"
+                style={{
+                    fontFamily: 'var(--font-display)',
+                    color: 'rgba(var(--fg-rgb), 0.45)',
+                }}
+            >
                 I build scalable products with the latest technologies and
-                frameworks. My passion as a developer and designer drives me to
-                create amazing digital experiences that bring your ideas to
-                life.
-            </p>
+                frameworks — turning complex ideas into elegant digital realities.
+            </motion.p>
         </div>
     )
 }
@@ -109,18 +140,16 @@ export const Header = () => {
 export const ProductCard = ({ product, translate }) => {
     return (
         <motion.div
-            style={{
-                x: translate,
-            }}
-            whileHover={{
-                y: -20,
-            }}
+            style={{ x: translate }}
+            whileHover={{ y: -16 }}
             key={product.title}
             className="group/product h-96 w-[30rem] relative flex-shrink-0"
         >
             <Link
                 href={product.link}
-                className="block group-hover/product:shadow-2xl "
+                className="block"
+                target="_blank"
+                rel="noopener noreferrer"
             >
                 <Image
                     src={product.thumbnail}
@@ -130,10 +159,22 @@ export const ProductCard = ({ product, translate }) => {
                     alt={product.title}
                 />
             </Link>
-            <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-            <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-                {product.title}
-            </h2>
+            {/* Overlay */}
+            <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{ background: 'linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.3) 60%, transparent 100%)' }}
+            />
+            {/* Border reveal */}
+            <div className="absolute inset-0 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{ boxShadow: 'inset 0 0 0 1px rgba(200,169,122,0.35)' }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 opacity-0 group-hover/product:translate-y-0 group-hover/product:opacity-100 transition-all duration-300">
+                <h2
+                    className="font-display text-xl font-light text-white"
+                    style={{ fontFamily: 'var(--font-display)' }}
+                >
+                    {product.title}
+                </h2>
+            </div>
         </motion.div>
     )
 }
